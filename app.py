@@ -170,7 +170,11 @@ st.markdown(
 
 
 def find_profile_photo():
+  # Reconhece diretamente imagem.png que está no repositório
   possible_names = [
+      "imagem.png",
+      "imagem.jpg",
+      "imagem.jpeg",
       "profile.png",
       "profile.jpg",
       "profile.jpeg",
@@ -263,7 +267,7 @@ with st.sidebar:
       )
     st.caption(f"Sincronizado: `{os.path.basename(pdf_path)}`")
   else:
-    st.info("Suba seu PDF na pasta `./data` para ativar o download.")
+    st.info("Suba seu PDF para ativar o download.")
 
 # Área Principal - Hero Banner
 st.markdown(
@@ -283,7 +287,6 @@ st.markdown(
 st.markdown("### 🎥 Vídeo de Apresentação")
 col_vid, col_vid_txt = st.columns([1.5, 1], gap="medium")
 
-# Cole a URL do YouTube, Vimeo ou link direto para seu vídeo na variável abaixo:
 video_source = ""
 
 with col_vid:
@@ -322,7 +325,7 @@ with col_vid_txt:
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Seções em Abas Elegantes
+# Seções em Abas
 tab_exp, tab_form, tab_comp, tab_cur_idi = st.tabs([
     "🏢 Experiência Profissional",
     "🎓 Formação Acadêmica",
