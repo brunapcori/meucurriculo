@@ -283,7 +283,8 @@ st.markdown(
 st.markdown("### 🎥 Vídeo de Apresentação")
 col_vid, col_vid_txt = st.columns([1.5, 1], gap="medium")
 
-video_source = ""
+# Link configurado com o vídeo fornecido
+video_source = "https://youtu.be/oItvfiUpsO4?is=BPv046PG3ejMbH0i"
 
 with col_vid:
   if video_source:
