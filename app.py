@@ -201,9 +201,27 @@ def extract_pdf_full_text(pdf_path):
   return text_content
 
 
+def clean_bullet_symbol(text):
+  return re.sub(
+      r"^[•\-\*\.·\uf0b7\u2022\u2023\u25cf\u25cb\u25aa\u25ab\u2013\u2014\+]\s*",
+      "",
+      text,
+  ).strip()
+
+
+def is_bullet_start(text):
+  return bool(
+      re.match(
+          r"^[•\-\*\.·\uf0b7\u2022\u2023\u25cf\u25cb\u25aa\u25ab\u2013\u2014\+]",
+          text,
+      )
+  )
+
+
 def parse_pdf_data(raw_text):
   data = {
       "resumo": "",
+      "ellenco_desc": "",
       "ellenco_bullets": [],
       "brasilseg_bullets": [],
       "mapfre_sinistros_bullets": [],
@@ -219,7 +237,11 @@ def parse_pdf_data(raw_text):
   if not raw_text.strip():
     return data
 
-  lines = [l.strip() for l in raw_text.splitlines() if l.strip()]
+  # Normaliza marcadores de lista unicode do PDF para formato padrão
+  normalized = re.sub(
+      r"[\uf0b7\u2022\u2023\u25cf\u25cb\u25aa\u25ab·]", "• ", raw_text
+  )
+  lines = [l.strip() for l in normalized.splitlines() if l.strip()]
 
   # 1. Resumo Profissional
   resumo_lines = []
@@ -244,33 +266,59 @@ def parse_pdf_data(raw_text):
     elif "brasilseg" in lower:
       current_company = "brasilseg"
       continue
-    elif "mapfre" in lower:
+    elif "analista de sinistros jr" in lower or (
+        "mapfre" in lower and "obras" not in lower
+    ):
       current_company = "mapfre_sinistros"
       continue
     elif "analista de obras e layout" in lower:
       current_company = "mapfre_obras"
       continue
     elif re.search(
-        r"(?i)^(forma[çc][ãa]o|cursos?|idiomas?|compet[êe]ncias)", l
+        r"(?i)^(forma[çc][ãa]o|cursos?|idiomas?|compet[êe]ncias|ferramentas|metodologias)",
+        l,
     ):
       current_company = None
+      continue
 
-    if current_company and (
-        l.startswith("-")
-        or l.startswith("•")
-        or l.startswith("*")
-        or l.startswith(".")
-    ):
-      bullet = re.sub(r"^[\-•\*\.]\s*", "", l).strip()
-      if bullet:
+    if current_company:
+      if re.match(
+          r"(?i)^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4}).*[\-–]",
+          l,
+      ):
+        continue
+      if (
+          "construções ltda" in lower
+          or "analista de sinistros" in lower
+          or "analista de obras" in lower
+          or "grupo segurador" in lower
+      ):
+        continue
+
+      if "responsável pela gestão da carteira corporativa" in lower:
+        data["ellenco_desc"] = l
+        continue
+
+      clean_l = clean_bullet_symbol(l)
+      if clean_l:
+        target_list = None
         if current_company == "ellenco":
-          data["ellenco_bullets"].append(bullet)
+          target_list = data["ellenco_bullets"]
         elif current_company == "brasilseg":
-          data["brasilseg_bullets"].append(bullet)
+          target_list = data["brasilseg_bullets"]
         elif current_company == "mapfre_sinistros":
-          data["mapfre_sinistros_bullets"].append(bullet)
+          target_list = data["mapfre_sinistros_bullets"]
         elif current_company == "mapfre_obras":
-          data["mapfre_obras_bullets"].append(bullet)
+          target_list = data["mapfre_obras_bullets"]
+
+        if target_list is not None:
+          if is_bullet_start(l) or not target_list:
+            target_list.append(clean_l)
+          else:
+            if len(target_list) > 0 and not l[0].isupper():
+              target_list[-1] += " " + clean_l
+            else:
+              target_list.append(clean_l)
 
   # 3. Competências Técnicas
   comp_lines = []
@@ -320,7 +368,7 @@ def parse_pdf_data(raw_text):
           r"(?i)^(idiomas?|ferramentas?|metodologias?|compet[êe]ncias?)", l
       ):
         break
-      c = re.sub(r"^[\-•\*\.]\s*", "", l).strip()
+      c = clean_bullet_symbol(l)
       if c:
         data["cursos"].append(c)
 
@@ -456,16 +504,11 @@ tab_exp, tab_form, tab_comp, tab_cur_idi = st.tabs([
 with tab_exp:
   st.markdown("<br>", unsafe_allow_html=True)
 
-  # 1. ELLENCO
+  # 1. ELLENCO CONSTRUÇÕES LTDA
   ellenco_items = (
       cv["ellenco_bullets"]
       if cv["ellenco_bullets"]
       else [
-          (
-              "Responsável pela gestão da carteira corporativa de seguros da"
-              " companhia, conduzindo processos de contratação, renovação,"
-              " análise técnica, negociação e gestão de riscos."
-          ),
           "Administração de aproximadamente 100 apólices ativas.",
           (
               "Gestão de programas envolvendo Property, RC Geral, RC Obras, D&O,"
@@ -500,9 +543,23 @@ with tab_exp:
               "Interface direta com Diretoria, Jurídico, Engenharia, Financeiro"
               " e Operações para suporte à tomada de decisão."
           ),
+          (
+              "Projetos de IA generativa para elaboração de indicadores e"
+              " gestão."
+          ),
       ]
   )
+  ellenco_desc = (
+      cv["ellenco_desc"]
+      if cv["ellenco_desc"]
+      else (
+          "Responsável pela gestão da carteira corporativa de seguros da"
+          " companhia, conduzindo processos de contratação, renovação, análise"
+          " técnica, negociação e gestão de riscos."
+      )
+  )
   ellenco_li = "".join([f"<li>{b}</li>" for b in ellenco_items])
+
   st.markdown(
       f"""<div class="content-card">
         <div class="card-header-row">
@@ -513,6 +570,9 @@ with tab_exp:
             </div>
             <span class="period-badge">Jan/2025 – Atual</span>
         </div>
+        <p style="color: #475569; font-size: 0.93rem; margin-bottom: 0.6rem; font-weight: 500;">
+            {ellenco_desc}
+        </p>
         <ul style="color: #334155; font-size: 0.92rem; line-height: 1.75; padding-left: 1.3rem; margin: 0.5rem 0 0 0;">
             {ellenco_li}
         </ul>
@@ -560,6 +620,7 @@ with tab_exp:
       ]
   )
   brasilseg_li = "".join([f"<li>{b}</li>" for b in brasilseg_items])
+
   st.markdown(
       f"""<div class="content-card">
         <div class="card-header-row">
@@ -583,11 +644,10 @@ with tab_exp:
       if cv["mapfre_sinistros_bullets"]
       else [
           "Análise técnica de cobertura.",
-          "Gestão de indicadores e monitoramento rigoroso de SLA.",
-          (
-              "Priorização operacional e participação em projetos de melhoria"
-              " contínua."
-          ),
+          "Gestão de indicadores.",
+          "Monitoramento de SLA.",
+          "Priorização operacional.",
+          "Participação em projetos de melhoria contínua.",
       ]
   )
   mapfre_obras = (
@@ -596,14 +656,12 @@ with tab_exp:
       else [
           "Coordenação de fornecedores e equipes de obra.",
           (
-              "Gestão de orçamento, cronograma físico-financeiro e"
-              " infraestrutura predial."
+              "Gestão de orçamento, cronograma e infraestrutura predial."
           ),
           "Implantação de unidades corporativas em âmbito nacional.",
-          (
-              "Condução de reuniões de projetos, planejamento de mudanças"
-              " corporativas e gestão de contratos."
-          ),
+          "Condução de reuniões de projetos.",
+          "Planejamento de mudanças corporativas.",
+          "Gestão de contratos e fornecedores.",
       ]
   )
   sinistros_li = "".join([f"<li>{b}</li>" for b in mapfre_sinistros])
