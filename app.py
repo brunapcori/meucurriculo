@@ -68,12 +68,6 @@ st.markdown(
         padding: 1.5rem 1.6rem;
         margin-bottom: 1.3rem;
         box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-        transition: transform 0.15s ease, box-shadow 0.15s ease;
-    }
-
-    .content-card:hover {
-        box-shadow: 0 8px 20px rgba(15, 23, 42, 0.06);
-        border-color: #cbd5e1;
     }
 
     .card-header-row {
@@ -89,12 +83,6 @@ st.markdown(
         font-size: 1.15rem;
         font-weight: 700;
         color: #0f172a;
-    }
-
-    .company-name {
-        font-size: 1rem;
-        font-weight: 600;
-        color: #0284c7;
     }
 
     .period-badge {
@@ -217,7 +205,6 @@ def extract_pdf_lines(pdf_path):
 
 
 def parse_pdf_resume(lines):
-  """Segmenta dinamicamente as seções do PDF para preencher abas e cards automaticamente."""
   data = {
       "nome": "Bruna Prado Coriolano",
       "subtitulo": (
@@ -273,97 +260,98 @@ def parse_pdf_resume(lines):
     if not matched:
       buffer[current_section].append(line)
 
-  # Resumo
   if buffer["resumo"]:
     data["resumo"] = " ".join(buffer["resumo"])
 
-  # Competências Técnicas
-  if buffer["competencias"]:
+  for sec, key, sep in [
+      ("competencias", "competencias_tecnicas", r"[/•|,;]"),
+      ("ferramentas", "ferramentas", r"[/•\-|,;]"),
+      ("metodologias", "metodologias", r"[/•\-|,;]"),
+      ("comportamentais", "competencias_comportamentais", r"[/•|,;]"),
+  ]:
     items = []
-    for l in buffer["competencias"]:
-      for item in re.split(r"[/•|,;]", l):
+    for l in buffer[sec]:
+      for item in re.split(sep, l):
         it = item.strip()
         if it:
           items.append(it)
-    data["competencias_tecnicas"] = items
+    data[key] = items
 
-  # Ferramentas
-  if buffer["ferramentas"]:
-    items = []
-    for l in buffer["ferramentas"]:
-      for item in re.split(r"[/•\-|,;]", l):
-        it = item.strip()
-        if it:
-          items.append(it)
-    data["ferramentas"] = items
-
-  # Metodologias
-  if buffer["metodologias"]:
-    items = []
-    for l in buffer["metodologias"]:
-      for item in re.split(r"[/•\-|,;]", l):
-        it = item.strip()
-        if it:
-          items.append(it)
-    data["metodologias"] = items
-
-  # Comportamentais
-  if buffer["comportamentais"]:
-    items = []
-    for l in buffer["comportamentais"]:
-      for item in re.split(r"[/•|,;]", l):
-        it = item.strip()
-        if it:
-          items.append(it)
-    data["competencias_comportamentais"] = items
-
-  # Experiências
+  # Processamento estruturado das Experiências Profissionais
   exp_lines = buffer["experiencias"]
   if exp_lines:
-    current_exp = None
-    date_pattern = r"(?i)^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{2}/\d{4}|\d{4})"
+    experiences = []
+    curr = None
 
-    for l in exp_lines:
-      if re.search(date_pattern, l) or (
-          "|" in l and not l.startswith("-") and not l.startswith("•")
-      ):
-        if current_exp:
-          data["experiencias"].append(current_exp)
+    idx = 0
+    while idx < len(exp_lines):
+      line = exp_lines[idx]
 
-        period = ""
-        headline = l
-        date_match = re.search(
-            r"(?i)((jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4})[^\-|•\n]*[\-–][^\n]+)",
-            l,
+      # Identifica linha de data isolada (ex.: "jan/2025 - Atual")
+      is_date_only = (
+          re.match(
+              r"(?i)^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4}).*[\-–].*$",
+              line,
+          )
+          and len(line) < 35
+      )
+
+      if is_date_only:
+        period_str = line
+        idx += 1
+        header_str = (
+            exp_lines[idx]
+            if idx < len(exp_lines)
+            else "Experiência Profissional"
         )
-        if date_match and len(date_match.group(1)) < 35:
-          period = date_match.group(1).strip()
-          headline = l.replace(period, "").strip(" -|")
-
-        current_exp = {
-            "header": headline if headline else l,
-            "period": period,
+        if curr:
+          experiences.append(curr)
+        curr = {
+            "header": header_str,
+            "period": period_str,
             "desc": [],
             "bullets": [],
         }
-      elif current_exp:
+      elif ("|" in line and not line.startswith("-") and not line.startswith("•")) or re.search(r"\b(20\d{2}|19\d{2})\b", line):
+        date_match = re.search(
+            r"(?i)((jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4})[^\-|•\n]*[\-–][^\n]+)",
+            line,
+        )
+        period_str = ""
+        header_str = line
+        if date_match and len(date_match.group(1)) < 35:
+          period_str = date_match.group(1).strip()
+          header_str = line.replace(period_str, "").strip(" -|")
+
+        if curr:
+          experiences.append(curr)
+        curr = {
+            "header": header_str if header_str else line,
+            "period": period_str,
+            "desc": [],
+            "bullets": [],
+        }
+      elif curr:
         if (
-            l.startswith("-")
-            or l.startswith("•")
-            or l.startswith("*")
-            or l.startswith(".")
+            line.startswith("-")
+            or line.startswith("•")
+            or line.startswith("*")
+            or line.startswith(".")
         ):
-          clean_b = re.sub(r"^[\-•\*\.]\s*", "", l)
-          current_exp["bullets"].append(clean_b)
+          clean_b = re.sub(r"^[\-•\*\.]\s*", "", line)
+          curr["bullets"].append(clean_b)
         else:
-          current_exp["desc"].append(l)
+          curr["desc"].append(line)
       else:
-        current_exp = {"header": l, "period": "", "desc": [], "bullets": []}
+        curr = {"header": line, "period": "", "desc": [], "bullets": []}
 
-    if current_exp:
-      data["experiencias"].append(current_exp)
+      idx += 1
 
-  # Formações
+    if curr:
+      experiences.append(curr)
+    data["experiencias"] = experiences
+
+  # Formações Académicas
   form_lines = buffer["formacao"]
   if form_lines:
     i = 0
@@ -375,7 +363,6 @@ def parse_pdf_resume(lines):
           else ""
       )
       year = ""
-
       offset = 2 if inst else 1
       if i + offset < len(form_lines) and re.match(
           r"^\d{4}$", form_lines[i + offset]
@@ -393,13 +380,11 @@ def parse_pdf_resume(lines):
           {"titulo": title, "instituicao": inst, "ano": year}
       )
 
-  # Cursos
+  # Cursos e Idiomas
   if buffer["cursos"]:
     data["cursos"] = [
         re.sub(r"^[\-•\*\.]\s*", "", c) for c in buffer["cursos"]
     ]
-
-  # Idiomas
   if buffer["idiomas"]:
     data["idiomas"] = buffer["idiomas"]
 
@@ -523,7 +508,7 @@ tab_exp, tab_form, tab_comp, tab_cur_idi = st.tabs([
     "📚 Cursos & Idiomas",
 ])
 
-# ----------------- ABA 1: EXPERIÊNCIA PROFISSIONAL (Dinâmico) -----------------
+# ----------------- ABA 1: EXPERIÊNCIA PROFISSIONAL -----------------
 with tab_exp:
   st.markdown("<br>", unsafe_allow_html=True)
   if cv["experiencias"]:
@@ -535,25 +520,24 @@ with tab_exp:
           else ""
       )
 
-      bullets_html = ""
-      if exp["bullets"]:
-        bullets_html = (
-            "<ul style='color: #334155; font-size: 0.92rem; line-height: 1.75;"
-            " padding-left: 1.3rem; margin: 0.5rem 0 0 0;'>"
-        )
-        for b in exp["bullets"]:
-          bullets_html += f"<li>{b}</li>"
-        bullets_html += "</ul>"
+      # Montagem do HTML dos tópicos e da descrição
+      bullets_list = "".join([f"<li>{b}</li>" for b in exp["bullets"]])
+      bullets_html = (
+          "<ul style='color: #334155; font-size: 0.92rem; line-height: 1.75;"
+          f" padding-left: 1.3rem; margin: 0.5rem 0 0 0;'>{bullets_list}</ul>"
+          if exp["bullets"]
+          else ""
+      )
 
-      desc_html = ""
-      if exp["desc"]:
-        desc_html = (
-            "<p style='color: #475569; font-size: 0.93rem; margin-bottom:"
-            " 0.6rem; font-weight: 500;'>{' '.join(exp['desc'])}</p>"
-        )
+      desc_text = " ".join(exp["desc"])
+      desc_html = (
+          "<p style='color: #475569; font-size: 0.93rem; margin-bottom:"
+          f" 0.6rem; font-weight: 500;'>{desc_text}</p>"
+          if desc_text
+          else ""
+      )
 
-      st.markdown(
-          f"""
+      card_html = f"""
             <div class="content-card">
                 <div class="card-header-row">
                     <span class="role-title">{header_display}</span>
@@ -562,13 +546,12 @@ with tab_exp:
                 {desc_html}
                 {bullets_html}
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
+            """
+      st.markdown(card_html, unsafe_allow_html=True)
   else:
     st.info("Nenhuma experiência profissional detectada no arquivo PDF atual.")
 
-# ----------------- ABA 2: FORMAÇÃO ACADÊMICA (Dinâmico) -----------------
+# ----------------- ABA 2: FORMAÇÃO ACADÉMICA -----------------
 with tab_form:
   st.markdown("<br>", unsafe_allow_html=True)
   if cv["formacoes"]:
@@ -582,27 +565,25 @@ with tab_form:
             else ""
         )
         inst_text = (
-            '<div class="company-name" style="margin: 0.3rem'
+            '<div style="color: #0284c7; font-weight: 600; margin: 0.3rem'
             f' 0;">{form["instituicao"]}</div>'
             if form["instituicao"]
             else ""
         )
 
-        st.markdown(
-            f"""
+        f_html = f"""
                 <div class="content-card" style="height: 100%;">
                     <div style="font-size: 1.6rem; margin-bottom: 0.5rem;">🎓</div>
                     <div class="role-title">{form["titulo"]}</div>
                     {inst_text}
                     {year_badge}
                 </div>
-                """,
-            unsafe_allow_html=True,
-        )
+                """
+        st.markdown(f_html, unsafe_allow_html=True)
   else:
     st.info("Nenhuma formação acadêmica detectada no arquivo PDF atual.")
 
-# ----------------- ABA 3: COMPETÊNCIAS & TECNOLOGIAS (Dinâmico) -----------------
+# ----------------- ABA 3: COMPETÊNCIAS & TECNOLOGIAS -----------------
 with tab_comp:
   st.markdown("<br>", unsafe_allow_html=True)
   col_c1, col_c2 = st.columns(2)
@@ -677,7 +658,7 @@ with tab_comp:
           unsafe_allow_html=True,
       )
 
-# ----------------- ABA 4: CURSOS & IDIOMAS (Dinâmico) -----------------
+# ----------------- ABA 4: CURSOS & IDIOMAS -----------------
 with tab_cur_idi:
   st.markdown("<br>", unsafe_allow_html=True)
   col_cur, col_idi = st.columns([1.2, 1])
