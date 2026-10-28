@@ -13,147 +13,147 @@ st.set_page_config(
 
 # Estilização CSS Moderna, Executiva e Elegante
 st.markdown(
-    """
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    """<style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
 
-    html, body, [class*="css"] {
-        font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    }
+html, body, [class*="css"] {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+}
 
-    .main {
-        background-color: #f8fafc;
-    }
+.main {
+    background-color: #f8fafc;
+}
 
-    /* Hero Banner Executivo */
-    .hero-card {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-        border-radius: 18px;
-        padding: 2.2rem 2.4rem;
-        color: #ffffff;
-        margin-bottom: 2rem;
-        box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.25);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+.hero-card {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+    border-radius: 18px;
+    padding: 2.2rem 2.4rem;
+    color: #ffffff;
+    margin-bottom: 2rem;
+    box-shadow: 0 12px 30px -10px rgba(15, 23, 42, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
 
-    .hero-title {
-        font-size: 2.2rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        color: #ffffff;
-        margin-bottom: 0.3rem;
-    }
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+    margin-bottom: 0.3rem;
+}
 
-    .hero-subtitle {
-        font-size: 1.1rem;
-        color: #38bdf8;
-        font-weight: 600;
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-    }
+.hero-subtitle {
+    font-size: 1.1rem;
+    color: #38bdf8;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
 
-    .hero-bio {
-        font-size: 0.98rem;
-        color: #cbd5e1;
-        max-width: 980px;
-        line-height: 1.7;
-    }
+.hero-bio {
+    font-size: 0.98rem;
+    color: #cbd5e1;
+    max-width: 980px;
+    line-height: 1.7;
+}
 
-    /* Cards Estruturados */
-    .content-card {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        border-radius: 14px;
-        padding: 1.5rem 1.6rem;
-        margin-bottom: 1.3rem;
-        box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-    }
+.content-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    padding: 1.6rem 1.8rem;
+    margin-bottom: 1.4rem;
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+}
 
-    .card-header-row {
-        display: flex;
-        justify-content: space-between;
-        align-items: baseline;
-        flex-wrap: wrap;
-        margin-bottom: 0.6rem;
-        gap: 0.5rem;
-    }
+.card-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+    margin-bottom: 0.7rem;
+    gap: 0.5rem;
+}
 
-    .role-title {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #0f172a;
-    }
+.role-title {
+    font-size: 1.18rem;
+    font-weight: 700;
+    color: #0f172a;
+}
 
-    .period-badge {
-        background-color: #f1f5f9;
-        color: #475569;
-        font-size: 0.82rem;
-        font-weight: 600;
-        padding: 0.25rem 0.65rem;
-        border-radius: 9999px;
-        border: 1px solid #e2e8f0;
-    }
+.company-name {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: #0284c7;
+}
 
-    /* Badges Técnicas e Comportamentais */
-    .tag-pill {
-        display: inline-block;
-        padding: 0.35rem 0.75rem;
-        margin: 0.25rem 0.25rem;
-        font-size: 0.85rem;
-        font-weight: 600;
-        border-radius: 8px;
-        border: 1px solid transparent;
-    }
+.period-badge {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 9999px;
+    border: 1px solid #e2e8f0;
+}
 
-    .tag-blue {
-        background-color: #e0f2fe;
-        color: #0369a1;
-        border-color: #bae6fd;
-    }
+.tag-pill {
+    display: inline-block;
+    padding: 0.35rem 0.75rem;
+    margin: 0.25rem 0.25rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 8px;
+    border: 1px solid transparent;
+}
 
-    .tag-purple {
-        background-color: #f3e8ff;
-        color: #7e22ce;
-        border-color: #e9d5ff;
-    }
+.tag-blue {
+    background-color: #e0f2fe;
+    color: #0369a1;
+    border-color: #bae6fd;
+}
 
-    .tag-emerald {
-        background-color: #d1fae5;
-        color: #047857;
-        border-color: #a7f3d0;
-    }
+.tag-purple {
+    background-color: #f3e8ff;
+    color: #7e22ce;
+    border-color: #e9d5ff;
+}
 
-    .tag-slate {
-        background-color: #f1f5f9;
-        color: #334155;
-        border-color: #e2e8f0;
-    }
+.tag-emerald {
+    background-color: #d1fae5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
 
-    /* Links de Contato */
-    .contact-button {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-        padding: 0.65rem 1rem;
-        background-color: #ffffff;
-        border: 1px solid #cbd5e1;
-        border-radius: 10px;
-        color: #0f172a !important;
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.88rem;
-        margin-bottom: 0.6rem;
-        box-shadow: 0 1px 2px rgba(0,0,0,0.03);
-    }
+.tag-slate {
+    background-color: #f1f5f9;
+    color: #334155;
+    border-color: #e2e8f0;
+}
 
-    .contact-button:hover {
-        border-color: #0284c7;
-        background-color: #f8fafc;
-        color: #0284c7 !important;
-    }
-</style>
-""",
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.65rem 1rem;
+    background-color: #ffffff;
+    border: 1px solid #cbd5e1;
+    border-radius: 10px;
+    color: #0f172a !important;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.88rem;
+    margin-bottom: 0.6rem;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+}
+
+.contact-button:hover {
+    border-color: #0284c7;
+    background-color: #f8fafc;
+    color: #0284c7 !important;
+}
+</style>""",
     unsafe_allow_html=True,
 )
 
@@ -188,213 +188,154 @@ def get_latest_pdf(search_dirs=["./data", "."]):
   return max(pdf_files, key=os.path.getmtime)
 
 
-def extract_pdf_lines(pdf_path):
-  all_lines = []
+def extract_pdf_full_text(pdf_path):
+  text_content = ""
   try:
     with pdfplumber.open(pdf_path) as pdf:
       for page in pdf.pages:
-        text = page.extract_text()
-        if text:
-          for line in text.splitlines():
-            cleaned = line.strip()
-            if cleaned:
-              all_lines.append(cleaned)
+        txt = page.extract_text()
+        if txt:
+          text_content += "\n" + txt
   except Exception:
-    return []
-  return all_lines
+    return ""
+  return text_content
 
 
-def parse_pdf_resume(lines):
+def parse_pdf_data(raw_text):
   data = {
-      "nome": "Bruna Prado Coriolano",
-      "subtitulo": (
-          "SEGUROS | SINISTROS | GESTÃO DE RISCOS | CORPORATE INSURANCE"
-      ),
       "resumo": "",
-      "experiencias": [],
-      "formacoes": [],
+      "ellenco_bullets": [],
+      "brasilseg_bullets": [],
+      "mapfre_sinistros_bullets": [],
+      "mapfre_obras_bullets": [],
       "competencias_tecnicas": [],
       "ferramentas": [],
       "metodologias": [],
-      "competencias_comportamentais": [],
+      "comportamentais": [],
       "cursos": [],
       "idiomas": [],
   }
 
-  if not lines:
+  if not raw_text.strip():
     return data
 
-  current_section = "topo"
-  buffer = {
-      "topo": [],
-      "resumo": [],
-      "competencias": [],
-      "experiencias": [],
-      "formacao": [],
-      "cursos": [],
-      "idiomas": [],
-      "ferramentas": [],
-      "metodologias": [],
-      "comportamentais": [],
-  }
+  lines = [l.strip() for l in raw_text.splitlines() if l.strip()]
 
-  header_patterns = [
-      (r"(?i)^resumo(\s+profissional)?$", "resumo"),
-      (r"(?i)^compet[êe]ncias\s+t[ée]cnicas$", "competencias"),
-      (r"(?i)^experi[êe]ncia(\s+profissional)?$", "experiencias"),
-      (r"(?i)^forma[çc][ãa]o(\s+acad[êe]mica)?$", "formacao"),
-      (r"(?i)^cursos?(\s+complementares)?$", "cursos"),
-      (r"(?i)^idiomas?$", "idiomas"),
-      (r"(?i)^ferramentas?$", "ferramentas"),
-      (r"(?i)^metodologias?$", "metodologias"),
-      (r"(?i)^compet[êe]ncias\s+comportamentais$", "comportamentais"),
-  ]
-
-  for line in lines:
-    matched = False
-    for pat, sec_name in header_patterns:
-      if re.match(pat, line):
-        current_section = sec_name
-        matched = True
+  # 1. Resumo Profissional
+  resumo_lines = []
+  capture_resumo = False
+  for l in lines:
+    if re.search(r"(?i)^resumo(\s+profissional)?$", l):
+      capture_resumo = True
+      continue
+    if capture_resumo:
+      if re.search(r"(?i)^(compet[êe]ncias|experi[êe]ncia|forma[çc][ãa]o)", l):
         break
-    if not matched:
-      buffer[current_section].append(line)
+      resumo_lines.append(l)
+  data["resumo"] = " ".join(resumo_lines)
 
-  if buffer["resumo"]:
-    data["resumo"] = " ".join(buffer["resumo"])
+  # 2. Experiências por Empresa
+  current_company = None
+  for l in lines:
+    lower = l.lower()
+    if "ellenco" in lower:
+      current_company = "ellenco"
+      continue
+    elif "brasilseg" in lower:
+      current_company = "brasilseg"
+      continue
+    elif "mapfre" in lower:
+      current_company = "mapfre_sinistros"
+      continue
+    elif "analista de obras e layout" in lower:
+      current_company = "mapfre_obras"
+      continue
+    elif re.search(
+        r"(?i)^(forma[çc][ãa]o|cursos?|idiomas?|compet[êe]ncias)", l
+    ):
+      current_company = None
 
-  for sec, key, sep in [
-      ("competencias", "competencias_tecnicas", r"[/•|,;]"),
-      ("ferramentas", "ferramentas", r"[/•\-|,;]"),
-      ("metodologias", "metodologias", r"[/•\-|,;]"),
-      ("comportamentais", "competencias_comportamentais", r"[/•|,;]"),
-  ]:
-    items = []
-    for l in buffer[sec]:
-      for item in re.split(sep, l):
-        it = item.strip()
-        if it:
-          items.append(it)
-    data[key] = items
+    if current_company and (
+        l.startswith("-")
+        or l.startswith("•")
+        or l.startswith("*")
+        or l.startswith(".")
+    ):
+      bullet = re.sub(r"^[\-•\*\.]\s*", "", l).strip()
+      if bullet:
+        if current_company == "ellenco":
+          data["ellenco_bullets"].append(bullet)
+        elif current_company == "brasilseg":
+          data["brasilseg_bullets"].append(bullet)
+        elif current_company == "mapfre_sinistros":
+          data["mapfre_sinistros_bullets"].append(bullet)
+        elif current_company == "mapfre_obras":
+          data["mapfre_obras_bullets"].append(bullet)
 
-  # Processamento estruturado das Experiências Profissionais
-  exp_lines = buffer["experiencias"]
-  if exp_lines:
-    experiences = []
-    curr = None
+  # 3. Competências Técnicas
+  comp_lines = []
+  capture_comp = False
+  for l in lines:
+    if re.search(r"(?i)^compet[êe]ncias\s+t[ée]cnicas$", l):
+      capture_comp = True
+      continue
+    if capture_comp:
+      if re.search(r"(?i)^(experi[êe]ncia|forma[çc][ãa]o|cursos|idiomas)", l):
+        break
+      comp_lines.append(l)
 
-    idx = 0
-    while idx < len(exp_lines):
-      line = exp_lines[idx]
+  for l in comp_lines:
+    for item in re.split(r"[/•|,;]", l):
+      it = item.strip()
+      if it and len(it) > 1:
+        data["competencias_tecnicas"].append(it)
 
-      # Identifica linha de data isolada (ex.: "jan/2025 - Atual")
-      is_date_only = (
-          re.match(
-              r"(?i)^(jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4}).*[\-–].*$",
-              line,
-          )
-          and len(line) < 35
+  # 4. Ferramentas, Metodologias e Comportamentais
+  for l in lines:
+    if re.search(r"(?i)^ferramentas\b", l):
+      parts = re.split(
+          r"[:\-–|,/]", re.sub(r"(?i)^ferramentas\s*[:\-–]?\s*", "", l)
       )
-
-      if is_date_only:
-        period_str = line
-        idx += 1
-        header_str = (
-            exp_lines[idx]
-            if idx < len(exp_lines)
-            else "Experiência Profissional"
-        )
-        if curr:
-          experiences.append(curr)
-        curr = {
-            "header": header_str,
-            "period": period_str,
-            "desc": [],
-            "bullets": [],
-        }
-      elif ("|" in line and not line.startswith("-") and not line.startswith("•")) or re.search(r"\b(20\d{2}|19\d{2})\b", line):
-        date_match = re.search(
-            r"(?i)((jan|fev|mar|abr|mai|jun|jul|ago|set|out|nov|dez|\d{4})[^\-|•\n]*[\-–][^\n]+)",
-            line,
-        )
-        period_str = ""
-        header_str = line
-        if date_match and len(date_match.group(1)) < 35:
-          period_str = date_match.group(1).strip()
-          header_str = line.replace(period_str, "").strip(" -|")
-
-        if curr:
-          experiences.append(curr)
-        curr = {
-            "header": header_str if header_str else line,
-            "period": period_str,
-            "desc": [],
-            "bullets": [],
-        }
-      elif curr:
-        if (
-            line.startswith("-")
-            or line.startswith("•")
-            or line.startswith("*")
-            or line.startswith(".")
-        ):
-          clean_b = re.sub(r"^[\-•\*\.]\s*", "", line)
-          curr["bullets"].append(clean_b)
-        else:
-          curr["desc"].append(line)
-      else:
-        curr = {"header": line, "period": "", "desc": [], "bullets": []}
-
-      idx += 1
-
-    if curr:
-      experiences.append(curr)
-    data["experiencias"] = experiences
-
-  # Formações Académicas
-  form_lines = buffer["formacao"]
-  if form_lines:
-    i = 0
-    while i < len(form_lines):
-      title = form_lines[i]
-      inst = (
-          form_lines[i + 1]
-          if i + 1 < len(form_lines) and not re.match(r"^\d{4}$", form_lines[i + 1])
-          else ""
+      data["ferramentas"] = [p.strip() for p in parts if p.strip()]
+    if re.search(r"(?i)^metodologias\b", l):
+      parts = re.split(
+          r"[:\-–|,/]", re.sub(r"(?i)^metodologias\s*[:\-–]?\s*", "", l)
       )
-      year = ""
-      offset = 2 if inst else 1
-      if i + offset < len(form_lines) and re.match(
-          r"^\d{4}$", form_lines[i + offset]
+      data["metodologias"] = [p.strip() for p in parts if p.strip()]
+    if re.search(r"(?i)^compet[êe]ncias\s+comportamentais\b", l):
+      parts = re.split(
+          r"[:\-–|,/]",
+          re.sub(r"(?i)^compet[êe]ncias\s+comportamentais\s*[:\-–]?\s*", "", l),
+      )
+      data["comportamentais"] = [p.strip() for p in parts if p.strip()]
+
+  # 5. Cursos
+  capture_cursos = False
+  for l in lines:
+    if re.search(r"(?i)^cursos?(\s+complementares)?$", l):
+      capture_cursos = True
+      continue
+    if capture_cursos:
+      if re.search(
+          r"(?i)^(idiomas?|ferramentas?|metodologias?|compet[êe]ncias?)", l
       ):
-        year = form_lines[i + offset]
-        i += offset + 1
-      elif inst and re.match(r"^\d{4}$", form_lines[i + 1]):
-        year = form_lines[i + 1]
-        inst = ""
-        i += 2
-      else:
-        i += 2 if inst else 1
+        break
+      c = re.sub(r"^[\-•\*\.]\s*", "", l).strip()
+      if c:
+        data["cursos"].append(c)
 
-      data["formacoes"].append(
-          {"titulo": title, "instituicao": inst, "ano": year}
-      )
-
-  # Cursos e Idiomas
-  if buffer["cursos"]:
-    data["cursos"] = [
-        re.sub(r"^[\-•\*\.]\s*", "", c) for c in buffer["cursos"]
-    ]
-  if buffer["idiomas"]:
-    data["idiomas"] = buffer["idiomas"]
+  # 6. Idiomas
+  for l in lines:
+    if re.search(r"(?i)^ingl[êe]s\b", l):
+      data["idiomas"].append(l)
 
   return data
 
 
 pdf_path = get_latest_pdf()
 photo_path = find_profile_photo()
-pdf_lines = extract_pdf_lines(pdf_path) if pdf_path else []
-cv = parse_pdf_resume(pdf_lines)
+pdf_text = extract_pdf_full_text(pdf_path) if pdf_path else ""
+cv = parse_pdf_data(pdf_text)
 
 # Barra Lateral (Sidebar)
 with st.sidebar:
@@ -417,16 +358,14 @@ with st.sidebar:
   st.markdown("---")
   st.markdown("#### **Canais de Contato**")
   st.markdown(
-      """
-        <a class="contact-button" href="https://www.linkedin.com/in/brunapcoriolano/" target="_blank">
-            <svg width="18" height="18" fill="#0a66c2" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-            Perfil no LinkedIn
-        </a>
-        <a class="contact-button" href="mailto:brunapcoriolano@gmail.com">
-            <svg width="18" height="18" fill="#e11d48" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-8.713h23.97l-11.985 8.713zm0 2.574l-12-8.725v13.438h24v-13.438l-12 8.725z"/></svg>
-            brunapcoriolano@gmail.com
-        </a>
-    """,
+      """<a class="contact-button" href="https://www.linkedin.com/in/brunapcoriolano/" target="_blank">
+        <svg width="18" height="18" fill="#0a66c2" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        Perfil no LinkedIn
+    </a>
+    <a class="contact-button" href="mailto:brunapcoriolano@gmail.com">
+        <svg width="18" height="18" fill="#e11d48" viewBox="0 0 24 24"><path d="M12 12.713l-11.985-8.713h23.97l-11.985 8.713zm0 2.574l-12-8.725v13.438h24v-13.438l-12 8.725z"/></svg>
+        brunapcoriolano@gmail.com
+    </a>""",
       unsafe_allow_html=True,
   )
 
@@ -446,16 +385,25 @@ with st.sidebar:
     st.info("Suba seu PDF para ativar o download.")
 
 # Área Principal - Hero Banner
+resumo_exibicao = (
+    cv["resumo"]
+    if cv["resumo"]
+    else (
+        "Engenheira Civil com MBA em Gestão de Projetos e mais de 10 anos de"
+        " sólida trajetória no mercado segurador, com atuação destacada em"
+        " grandes seguradoras e na gestão direta no segurado corporativo."
+        " Experiência de ponta em mitigação de riscos, governança securitária,"
+        " análise e regulação de sinistros e desenvolvimento de soluções"
+        " digitais orientadas à eficiência e dados."
+    )
+)
+
 st.markdown(
-    f"""
-<div class="hero-card">
-    <div class="hero-title">{cv["nome"]}</div>
-    <div class="hero-subtitle">{cv["subtitulo"]}</div>
-    <div class="hero-bio">
-        {cv["resumo"] if cv["resumo"] else "Mais de 10 anos de sólida trajetória no mercado segurador, com atuação destacada em grandes seguradoras e na gestão direta no segurado corporativo."}
-    </div>
-</div>
-""",
+    f"""<div class="hero-card">
+    <div class="hero-title">Bruna Prado Coriolano</div>
+    <div class="hero-subtitle">SEGUROS | SINISTROS | GESTÃO DE RISCOS | CORPORATE INSURANCE</div>
+    <div class="hero-bio">{resumo_exibicao}</div>
+</div>""",
     unsafe_allow_html=True,
 )
 
@@ -473,34 +421,30 @@ with col_vid:
       st.warning("Não foi possível carregar o vídeo.")
   else:
     st.markdown(
-        """
-        <div style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.5rem; text-align: center; color: #64748b;">
+        """<div style="background: #ffffff; border: 2px dashed #cbd5e1; border-radius: 12px; padding: 2.5rem; text-align: center; color: #64748b;">
             <p style="font-size: 1.8rem; margin: 0;">🎬</p>
             <p style="font-weight: 600; margin: 0.5rem 0 0 0;">Espaço Reservado para Pitch Pessoal</p>
-        </div>
-        """,
+        </div>""",
         unsafe_allow_html=True,
     )
 
 with col_vid_txt:
   st.markdown(
-      """
-    <div class="content-card" style="margin-bottom:0; height: 100%;">
+      """<div class="content-card" style="margin-bottom:0; height: 100%;">
         <div style="font-weight: 700; color: #0f172a; margin-bottom: 0.5rem; font-size: 1rem;">💼 Proposta de Valor</div>
         <ul style="color: #475569; font-size: 0.92rem; line-height: 1.7; padding-left: 1.2rem; margin: 0;">
             <li>Domínio completo de <b>Property, RC, Obras, Garantia e D&O</b>.</li>
-            <li>Histórico comprovado em <b>redução de custos</b> em renovações e cotações.</li>
+            <li>Histórico comprovado em <b>redução de custos</b> em renovações e negociações.</li>
             <li>Interface estratégica entre <b>Diretoria, Jurídico, Engenharia e Operações</b>.</li>
-            <li>Automação analítica com <b>Python, Streamlit e BI</b>.</li>
+            <li>Inovação aplicada a sinistros com <b>IA e automação analítica</b>.</li>
         </ul>
-    </div>
-    """,
+    </div>""",
       unsafe_allow_html=True,
   )
 
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Abas Dinâmicas
+# Abas Principais
 tab_exp, tab_form, tab_comp, tab_cur_idi = st.tabs([
     "🏢 Experiência Profissional",
     "🎓 Formação Acadêmica",
@@ -511,200 +455,412 @@ tab_exp, tab_form, tab_comp, tab_cur_idi = st.tabs([
 # ----------------- ABA 1: EXPERIÊNCIA PROFISSIONAL -----------------
 with tab_exp:
   st.markdown("<br>", unsafe_allow_html=True)
-  if cv["experiencias"]:
-    for exp in cv["experiencias"]:
-      header_display = exp["header"]
-      period_badge = (
-          f'<span class="period-badge">{exp["period"]}</span>'
-          if exp["period"]
-          else ""
-      )
 
-      # Montagem do HTML dos tópicos e da descrição
-      bullets_list = "".join([f"<li>{b}</li>" for b in exp["bullets"]])
-      bullets_html = (
-          "<ul style='color: #334155; font-size: 0.92rem; line-height: 1.75;"
-          f" padding-left: 1.3rem; margin: 0.5rem 0 0 0;'>{bullets_list}</ul>"
-          if exp["bullets"]
-          else ""
-      )
-
-      desc_text = " ".join(exp["desc"])
-      desc_html = (
-          "<p style='color: #475569; font-size: 0.93rem; margin-bottom:"
-          f" 0.6rem; font-weight: 500;'>{desc_text}</p>"
-          if desc_text
-          else ""
-      )
-
-      card_html = f"""
-            <div class="content-card">
-                <div class="card-header-row">
-                    <span class="role-title">{header_display}</span>
-                    {period_badge}
-                </div>
-                {desc_html}
-                {bullets_html}
+  # 1. ELLENCO
+  ellenco_items = (
+      cv["ellenco_bullets"]
+      if cv["ellenco_bullets"]
+      else [
+          (
+              "Responsável pela gestão da carteira corporativa de seguros da"
+              " companhia, conduzindo processos de contratação, renovação,"
+              " análise técnica, negociação e gestão de riscos."
+          ),
+          "Administração de aproximadamente 100 apólices ativas.",
+          (
+              "Gestão de programas envolvendo Property, RC Geral, RC Obras, D&O,"
+              " Frota, Equipamentos, Riscos de Engenharia e Garantias."
+          ),
+          (
+              "Negociação com aproximadamente 22 corretoras e mais de 30"
+              " Seguradoras."
+          ),
+          (
+              "Economia aproximada de R$ 476 mil em renovações e negociações em"
+              " 2026."
+          ),
+          (
+              "Economia aproximada de R$ 380 mil em renovações e negociações em"
+              " 2025."
+          ),
+          (
+              "Gestão de riscos contratuais, compliance securitário e"
+              " governança das apólices corporativas."
+          ),
+          (
+              "Análise técnica de aproximadamente 77 editais e 257 cotações no"
+              " último ano."
+          ),
+          "Análise mensal de cerca de seis licitações públicas.",
+          (
+              "Implantação do processo estruturado de gestão de sinistros da"
+              " empresa."
+          ),
+          (
+              "Interface direta com Diretoria, Jurídico, Engenharia, Financeiro"
+              " e Operações para suporte à tomada de decisão."
+          ),
+      ]
+  )
+  ellenco_li = "".join([f"<li>{b}</li>" for b in ellenco_items])
+  st.markdown(
+      f"""<div class="content-card">
+        <div class="card-header-row">
+            <div>
+                <span class="role-title">Analista de Seguros</span>
+                <span style="color: #94a3b8; margin: 0 0.4rem;">•</span>
+                <span class="company-name">ELLENCO CONSTRUÇÕES LTDA</span>
             </div>
-            """
-      st.markdown(card_html, unsafe_allow_html=True)
-  else:
-    st.info("Nenhuma experiência profissional detectada no arquivo PDF atual.")
+            <span class="period-badge">Jan/2025 – Atual</span>
+        </div>
+        <ul style="color: #334155; font-size: 0.92rem; line-height: 1.75; padding-left: 1.3rem; margin: 0.5rem 0 0 0;">
+            {ellenco_li}
+        </ul>
+    </div>""",
+      unsafe_allow_html=True,
+  )
 
-# ----------------- ABA 2: FORMAÇÃO ACADÉMICA -----------------
+  # 2. BRASILSEG
+  brasilseg_items = (
+      cv["brasilseg_bullets"]
+      if cv["brasilseg_bullets"]
+      else [
+          (
+              "Análise média de aproximadamente 200 processos de sinistro por"
+              " mês."
+          ),
+          "Referência técnica em sinistros habitacionais.",
+          "Treinamento e orientação técnica de reguladores.",
+          (
+              "Liderança do projeto de revisão das cartas de negativa de"
+              " sinistros."
+          ),
+          (
+              "Atuação junto às áreas de Produto, Subscrição, Jurídico,"
+              " Ouvidoria e Rede Comercial."
+          ),
+          (
+              "Desenvolvimento de estudos técnicos para melhoria de produtos e"
+              " oportunidades de mitigação de perdas."
+          ),
+          (
+              "Gestão de indicadores operacionais e acompanhamento contínuo de"
+              " projetos."
+          ),
+          (
+              "Envolvimento em grandes sinistros como subsidência em Maceió"
+              " devido extração do sal-gema pela Braskem e enchentes no Rio"
+              " Grande do Sul."
+          ),
+          (
+              "1º Lugar no projeto Inovalab com IA voltada ao sinistro,"
+              " projetos de redução de ressarcimento e comunicação com"
+              " segurados."
+          ),
+      ]
+  )
+  brasilseg_li = "".join([f"<li>{b}</li>" for b in brasilseg_items])
+  st.markdown(
+      f"""<div class="content-card">
+        <div class="card-header-row">
+            <div>
+                <span class="role-title">Analista de Sinistros Pleno</span>
+                <span style="color: #94a3b8; margin: 0 0.4rem;">•</span>
+                <span class="company-name">BRASILSEG</span>
+            </div>
+            <span class="period-badge">Jan/2018 – Nov/2024</span>
+        </div>
+        <ul style="color: #334155; font-size: 0.92rem; line-height: 1.75; padding-left: 1.3rem; margin: 0.5rem 0 0 0;">
+            {brasilseg_li}
+        </ul>
+    </div>""",
+      unsafe_allow_html=True,
+  )
+
+  # 3. GRUPO SEGURADOR BANCO DO BRASIL MAPFRE
+  mapfre_sinistros = (
+      cv["mapfre_sinistros_bullets"]
+      if cv["mapfre_sinistros_bullets"]
+      else [
+          "Análise técnica de cobertura.",
+          "Gestão de indicadores e monitoramento rigoroso de SLA.",
+          (
+              "Priorização operacional e participação em projetos de melhoria"
+              " contínua."
+          ),
+      ]
+  )
+  mapfre_obras = (
+      cv["mapfre_obras_bullets"]
+      if cv["mapfre_obras_bullets"]
+      else [
+          "Coordenação de fornecedores e equipes de obra.",
+          (
+              "Gestão de orçamento, cronograma físico-financeiro e"
+              " infraestrutura predial."
+          ),
+          "Implantação de unidades corporativas em âmbito nacional.",
+          (
+              "Condução de reuniões de projetos, planejamento de mudanças"
+              " corporativas e gestão de contratos."
+          ),
+      ]
+  )
+  sinistros_li = "".join([f"<li>{b}</li>" for b in mapfre_sinistros])
+  obras_li = "".join([f"<li>{b}</li>" for b in mapfre_obras])
+
+  st.markdown(
+      f"""<div class="content-card">
+        <div class="card-header-row">
+            <div>
+                <span class="role-title">Analista de Sinistros Jr</span>
+                <span style="color: #94a3b8; margin: 0 0.4rem;">•</span>
+                <span class="company-name">GRUPO SEGURADOR BANCO DO BRASIL MAPFRE</span>
+            </div>
+            <span class="period-badge">Set/2015 – Dez/2017</span>
+        </div>
+        <ul style="color: #334155; font-size: 0.92rem; line-height: 1.75; padding-left: 1.3rem; margin: 0.5rem 0 1rem 0;">
+            {sinistros_li}
+        </ul>
+        <hr style="border: 0; border-top: 1px solid #f1f5f9; margin: 1.1rem 0 1rem 0;">
+        <div class="card-header-row">
+            <div>
+                <span class="role-title">Analista de Obras e Layout Jr</span>
+                <span style="color: #94a3b8; margin: 0 0.4rem;">•</span>
+                <span class="company-name">GRUPO SEGURADOR BANCO DO BRASIL MAPFRE</span>
+            </div>
+            <span class="period-badge">Abr/2012 – Ago/2015</span>
+        </div>
+        <ul style="color: #334155; font-size: 0.92rem; line-height: 1.75; padding-left: 1.3rem; margin: 0.5rem 0 0 0;">
+            {obras_li}
+        </ul>
+    </div>""",
+      unsafe_allow_html=True,
+  )
+
+# ----------------- ABA 2: FORMAÇÃO ACADÊMICA -----------------
 with tab_form:
   st.markdown("<br>", unsafe_allow_html=True)
-  if cv["formacoes"]:
-    cols = st.columns(min(len(cv["formacoes"]), 3))
-    for idx, form in enumerate(cv["formacoes"]):
-      col_target = cols[idx % len(cols)]
-      with col_target:
-        year_badge = (
-            f'<span class="period-badge">Conclusão: {form["ano"]}</span>'
-            if form["ano"]
-            else ""
-        )
-        inst_text = (
-            '<div style="color: #0284c7; font-weight: 600; margin: 0.3rem'
-            f' 0;">{form["instituicao"]}</div>'
-            if form["instituicao"]
-            else ""
-        )
+  col_f1, col_f2, col_f3 = st.columns(3)
 
-        f_html = f"""
-                <div class="content-card" style="height: 100%;">
-                    <div style="font-size: 1.6rem; margin-bottom: 0.5rem;">🎓</div>
-                    <div class="role-title">{form["titulo"]}</div>
-                    {inst_text}
-                    {year_badge}
-                </div>
-                """
-        st.markdown(f_html, unsafe_allow_html=True)
-  else:
-    st.info("Nenhuma formação acadêmica detectada no arquivo PDF atual.")
+  with col_f1:
+    st.markdown(
+        """<div class="content-card" style="height: 100%;">
+            <div style="font-size: 1.6rem; margin-bottom: 0.5rem;">🎓</div>
+            <div class="role-title">MBA em Gestão de Projetos</div>
+            <div style="color: #0284c7; font-weight: 600; margin: 0.3rem 0;">USP / ESALQ</div>
+            <span class="period-badge">Conclusão: 2023</span>
+            <p style="color: #64748b; font-size: 0.88rem; margin-top: 0.8rem;">
+                Foco em planejamento estratégico, metodologias preditivas e ágeis, mitigação de riscos e governança corporativa.
+            </p>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+
+  with col_f2:
+    st.markdown(
+        """<div class="content-card" style="height: 100%;">
+            <div style="font-size: 1.6rem; margin-bottom: 0.5rem;">📐</div>
+            <div class="role-title">Bacharelado em Engenharia Civil</div>
+            <div style="color: #0284c7; font-weight: 600; margin: 0.3rem 0;">Universidade Mogi das Cruzes</div>
+            <span class="period-badge">Conclusão: 2015</span>
+            <p style="color: #64748b; font-size: 0.88rem; margin-top: 0.8rem;">
+                Base técnica sólida para avaliação pericial, análise de sinistros de engenharia, infraestrutura e riscos estruturais.
+            </p>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+
+  with col_f3:
+    st.markdown(
+        """<div class="content-card" style="height: 100%;">
+            <div style="font-size: 1.6rem; margin-bottom: 0.5rem;">🏗️</div>
+            <div class="role-title">Tecnologia em Construção Civil</div>
+            <div style="color: #0284c7; font-weight: 600; margin: 0.3rem 0;">FATEC SP</div>
+            <span class="period-badge">Conclusão: 2012</span>
+            <p style="color: #64748b; font-size: 0.88rem; margin-top: 0.8rem;">
+                Formação com ênfase em processos construtivos, orçamento, cronograma e acompanhamento operacional de obras.
+            </p>
+        </div>""",
+        unsafe_allow_html=True,
+    )
 
 # ----------------- ABA 3: COMPETÊNCIAS & TECNOLOGIAS -----------------
 with tab_comp:
   st.markdown("<br>", unsafe_allow_html=True)
   col_c1, col_c2 = st.columns(2)
 
-  with col_c1:
-    if cv["competencias_tecnicas"]:
-      badges = "".join([
-          f'<span class="tag-pill tag-blue">{s}</span>'
-          for s in cv["competencias_tecnicas"]
-      ])
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
-                    🛡️ Seguros & Gestão de Riscos (Core Expertise)
-                </div>
-                <div>{badges}</div>
-            </div>
-            """,
-          unsafe_allow_html=True,
-      )
+  tech_skills = (
+      cv["competencias_tecnicas"]
+      if cv["competencias_tecnicas"]
+      else [
+          "Corporate Insurance",
+          "Risk Management",
+          "Property",
+          "Seguro Garantia",
+          "Responsabilidade Civil",
+          "Riscos de Engenharia",
+          "Claims Management",
+          "Gestão de Sinistros",
+          "Gestão de Apólices",
+          "Governança Securitária",
+          "Análise Contratual",
+          "Insurance Placement",
+          "Broker Management",
+          "Renovações (Renewals)",
+          "Policy Administration",
+      ]
+  )
+  methods = (
+      cv["metodologias"]
+      if cv["metodologias"]
+      else [
+          "Scrum",
+          "Kanban",
+          "Agile",
+          "Melhoria Contínua",
+          "Gestão de Projetos",
+          "Lean Six Sigma",
+      ]
+  )
+  tools = (
+      cv["ferramentas"]
+      if cv["ferramentas"]
+      else [
+          "SAP",
+          "Excel Avançado",
+          "Access",
+          "Power BI",
+          "Python",
+          "Streamlit",
+          "Pandas",
+          "AutoCAD",
+          "MS Project",
+          "Word",
+          "PowerPoint",
+      ]
+  )
+  soft = (
+      cv["comportamentais"]
+      if cv["comportamentais"]
+      else [
+          "Pensamento Analítico",
+          "Negociação Estratégica",
+          "Gestão de Stakeholders",
+          "Resolução de Problemas",
+          "Tomada de Decisão",
+          "Gestão de Mudanças",
+          "Influência Técnica",
+          "Planejamento e Organização",
+      ]
+  )
 
-    if cv["metodologias"]:
-      badges_m = "".join([
-          f'<span class="tag-pill tag-purple">{m}</span>'
-          for m in cv["metodologias"]
-      ])
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
-                    🎯 Metodologias & Práticas de Gestão
-                </div>
-                <div>{badges_m}</div>
+  with col_c1:
+    badges_tech = "".join(
+        [f'<span class="tag-pill tag-blue">{s}</span>' for s in tech_skills]
+    )
+    st.markdown(
+        f"""<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
+                🛡️ Seguros & Gestão de Riscos (Core Expertise)
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
+            <div>{badges_tech}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
+
+    badges_m = "".join(
+        [f'<span class="tag-pill tag-purple">{m}</span>' for m in methods]
+    )
+    st.markdown(
+        f"""<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
+                🎯 Metodologias & Práticas de Gestão
+            </div>
+            <div>{badges_m}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
 
   with col_c2:
-    if cv["ferramentas"]:
-      badges_t = "".join([
-          f'<span class="tag-pill tag-emerald">{t}</span>'
-          for t in cv["ferramentas"]
-      ])
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
-                    💻 Ferramentas & Análise de Dados
-                </div>
-                <div>{badges_t}</div>
+    badges_t = "".join(
+        [f'<span class="tag-pill tag-emerald">{t}</span>' for t in tools]
+    )
+    st.markdown(
+        f"""<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
+                💻 Ferramentas & Análise de Dados
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
+            <div>{badges_t}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
 
-    if cv["competencias_comportamentais"]:
-      badges_s = "".join([
-          f'<span class="tag-pill tag-slate">{s}</span>'
-          for s in cv["competencias_comportamentais"]
-      ])
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
-                    🤝 Competências Comportamentais
-                </div>
-                <div>{badges_s}</div>
+    badges_s = "".join(
+        [f'<span class="tag-pill tag-slate">{s}</span>' for s in soft]
+    )
+    st.markdown(
+        f"""<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.05rem; margin-bottom: 0.8rem;">
+                🤝 Competências Comportamentais
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
+            <div>{badges_s}</div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
 
 # ----------------- ABA 4: CURSOS & IDIOMAS -----------------
 with tab_cur_idi:
   st.markdown("<br>", unsafe_allow_html=True)
   col_cur, col_idi = st.columns([1.2, 1])
 
+  cursos_items = (
+      cv["cursos"]
+      if cv["cursos"]
+      else [
+          (
+              "Yellow Belt Lean – Otimização de processos e eliminação de"
+              " desperdícios"
+          ),
+          "Gerenciamento de Obras – Controle de escopo, custo e prazos",
+          "Orçamento de Obras – Levantamento quantitativo e estimativas",
+          "Acessibilidade – Normas técnicas e conformidade predial",
+          "Sustentabilidade – Eficiência e boas práticas corporativas",
+      ]
+  )
+  cursos_li = "".join([f"<li><b>{c}</b></li>" for c in cursos_items])
+
   with col_cur:
-    if cv["cursos"]:
-      items_c = "".join([f"<li><b>{c}</b></li>" for c in cv["cursos"]])
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 1rem;">
-                    📜 Certificações & Cursos Complementares
-                </div>
-                <ul style="color: #334155; font-size: 0.95rem; line-height: 2; padding-left: 1.3rem; margin: 0;">
-                    {items_c}
-                </ul>
+    st.markdown(
+        f"""<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 1rem;">
+                📜 Certificações & Cursos Complementares
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
-    else:
-      st.info("Nenhum curso complementar listado.")
+            <ul style="color: #334155; font-size: 0.95rem; line-height: 2; padding-left: 1.3rem; margin: 0;">
+                {cursos_li}
+            </ul>
+        </div>""",
+        unsafe_allow_html=True,
+    )
 
   with col_idi:
-    if cv["idiomas"]:
-      idiomas_html = ""
-      for item in cv["idiomas"]:
-        parts = item.split("-", 1)
-        title = parts[0].strip()
-        desc = parts[1].strip() if len(parts) > 1 else ""
-        idiomas_html += f"""
-                <div style="margin-bottom: 1rem;">
-                    <div style="font-weight: 600; color: #0f172a; font-size: 0.95rem;">🌐 {title}</div>
-                    <div style="color: #475569; font-size: 0.88rem; margin-top: 0.2rem;">{desc}</div>
-                </div>
-                """
-      st.markdown(
-          f"""
-            <div class="content-card">
-                <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 1rem;">
-                    🌐 Idiomas
-                </div>
-                {idiomas_html}
+    st.markdown(
+        """<div class="content-card">
+            <div style="font-weight: 700; color: #0f172a; font-size: 1.1rem; margin-bottom: 1rem;">
+                🌐 Idiomas
             </div>
-            """,
-          unsafe_allow_html=True,
-      )
-    else:
-      st.info("Nenhum idioma listado.")
+            <div style="margin-bottom: 1rem;">
+                <div style="font-weight: 600; color: #0f172a; font-size: 0.95rem;">🇬🇧 Inglês</div>
+                <div style="color: #475569; font-size: 0.88rem; margin-top: 0.2rem;">
+                    Nível <b>Intermediário</b> voltado para leitura técnica e escrita. Conversação em desenvolvimento ativo.
+                </div>
+            </div>
+            <div>
+                <div style="font-weight: 600; color: #0f172a; font-size: 0.95rem;">🇧🇷 Português</div>
+                <div style="color: #475569; font-size: 0.88rem; margin-top: 0.2rem;">
+                    Nativo / Fluente.
+                </div>
+            </div>
+        </div>""",
+        unsafe_allow_html=True,
+    )
